@@ -1,0 +1,4 @@
+first you have to download Node package manager
+
+than install some dev dependences Like nodemon, express & mongoose
+ after you setup the enviornment simply run # npm start
