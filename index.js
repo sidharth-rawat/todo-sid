@@ -13,6 +13,20 @@ app.use(express.json());
 app.get('/', (req, res) => res.json({ 'message': 'server is running' }));
 app.use('/todo', todoRoutes);
 
+app.use((req, res, next) => {
+  const error = new Error('Invalid request');
+  res.status = 404; // not found.
+  next(error);
+});
+
+// this is the last route that will get hit, if there's no matching route or some error has occurred.
+app.use((error, req, res, next) => {
+  res.status = error.status || 500;
+  return res.json(
+      http_formatter(error, error.message, false)
+  );
+})
+
 mongoose.connect(DB_URL, { useNewUrlParser: true })
   .then(() => {
     console.log('Database connection successful');
