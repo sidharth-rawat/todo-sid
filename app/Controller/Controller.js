@@ -1,4 +1,4 @@
-const http_formatter = require('../_util/Formtter')
+const http_formatter = require('../../_util/Formtter')
 const Schema = require('../model/todo')
 const  getTodo = async(request,response)=>{
 
